@@ -29,9 +29,7 @@ namespace MultipleConnectionString.Controllers
             //var chineseService = _container.Resolve<IMessageService>(new NamedParameter("serviceName", "chinese"));
             var param = new NamedParameter("Name", "chinese");
             var resolveNamed = new ResolvedParameter((p, c) => p.Name == "chinese_service", (p, c) => c.ResolveNamed<IMessageRepository>("chinese"));
-            var chineseService = AutofacDependencyResolver.Current.Resolve<IMessageService>(new Parameter[1] { resolveNamed });
-            //var chineseService = DependencyResolver.Current.GetService<IMessageService>(new NamedParameter("chinese"));
-            //var result = _messageRepo.GetMessage();
+            var chineseService = AutofacDependencyResolver.Current.ResolveByNamed<IMessageService>("chinese_service");
             return View();
         }
         public ActionResult Index()

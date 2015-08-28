@@ -16,5 +16,11 @@ namespace MultipleConnectionString.Utilities
             var rawContainer = (AutofacDependencyResolver)DependencyResolver.Current;
             return rawContainer.ApplicationContainer.Resolve<T>(paramsCtor); //((IEnumerable<Parameter>)paramsCtor);
         }
+
+        public static T ResolveByNamed<T>(this IDependencyResolver context, string serviceName)
+        {
+            var rawContainer = (AutofacDependencyResolver)DependencyResolver.Current;
+            return rawContainer.ApplicationContainer.ResolveNamed<T>(serviceName);
+        }
     }
 }
